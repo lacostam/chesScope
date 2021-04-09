@@ -6,12 +6,20 @@ import { NavigationServiceStub } from '@testing/stubs';
 
 import { TopNavComponent } from './top-nav.component';
 
+import { Component, OnInit } from '@angular/core';
+
 @Component({
-    template: `
-        <sb-top-nav [someInput]="someInput" (someFunction)="someFunction($event)"></sb-top-nav>
-    `,
+    selector: 'input-group'
+    template:'./top-nav.component.html',
+    styleUrls: './top-nav.component.scss',
 })
-class TestHostComponent {
+export class evolution implements OnInit{
+    constructor(){ }
+
+    evolution(input, 2020, 04, 'blitz', function(params:res) {
+
+    })
+    input = input-group;
     // someInput = 1;
     // someFunction(event: Event) {}
 }
