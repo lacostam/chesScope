@@ -36,7 +36,9 @@
                 "./node_modules"
               ]
             },
-            "scripts": []
+            "scripts": [
+              "src/assets/js/elo.js"
+            ]
           },
           "configurations": {
             "production": {
