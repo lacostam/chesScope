@@ -6,22 +6,14 @@ import { NavigationServiceStub } from '@testing/stubs';
 
 import { TopNavComponent } from './top-nav.component';
 
-import { Component, OnInit } from '@angular/core';
+import '../../../charts/components/charts-area/elo.js'
+
+
 
 @Component({
-    selector: 'input-group'
-    template:'./top-nav.component.html',
-    styleUrls: './top-nav.component.scss',
 })
-export class evolution implements OnInit{
-    constructor(){ }
+export class evolution{
 
-    evolution(input, 2020, 04, 'blitz', function(params:res) {
-
-    })
-    input = input-group;
-    // someInput = 1;
-    // someFunction(event: Event) {}
 }
 
 describe('TopNavComponent', () => {
