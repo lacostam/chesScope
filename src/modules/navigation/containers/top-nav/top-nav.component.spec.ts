@@ -6,14 +6,17 @@ import { NavigationServiceStub } from '@testing/stubs';
 
 import { TopNavComponent } from './top-nav.component';
 
-import '../../../charts/components/charts-area/elo.js'
-
+import '../../../assets/js/elo.js'
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
 })
-export class evolution{
 
+export class myevolution implements OnInit{
+    ngOnInit(){
+      evolution(playername, year, month, time_class, callback);
+    }
 }
 
 describe('TopNavComponent', () => {
