@@ -1,9 +1,7 @@
 var ChessWebAPI = require('chess-web-api');
 var chessAPI = new ChessWebAPI();
 
-const fetch = require('node-fetch');
-
-
+var prompt = require('prompt');
 
 function evolution(playername, year, month, time_class, callback){
 
@@ -64,21 +62,50 @@ function listePartie(playername, year, month, time_class, callback){
 
 }
 
-async function infoTwitch(url){
-    fetch(url ,{
-        headers: {
-            'client-id' : '7jlr1k18l7mqrudhw5824rymletjv1', // l'id client autorisant chesscope a utiliser l'api twitch
-            'Authorization' : 'btbntze0zqnekqg4aune1fp481oyf0' //le jeton de chesscope
-        }
-    })
-    .then(res => res.json())
-    .then(json => console.log(json));
+function isStreamer(playername, callback){
+    chessAPI.getPlayer(playername).then(function(response) {
+
+        var data = response.body;
+        callback(data.is_streamer);
+
+    }, function(err) {
+        console.error(err);
+    });
 }
 
-evolution('moicflo', 2020, 04, 'blitz', function(result) {
-    console.table(result);
-})
+prompt.start();
 
-listePartie('moicflo', 2020, 04, 'blitz', function(result) {
-    console.table(result);
-})
+//saisie des infos à obtenir dans l'api
+prompt.get(['playername', 'year', 'month', 'time_class', 'datas'], function (err, result) {
+
+    var playername = String(result.playername);
+    var year = parseInt(result.year);
+    var month = parseInt(result.month);
+    var time_class = String(result.time_class);
+    var menu = result.datas;
+
+
+    //appel de la fonction adéquate
+    if(menu == 1){
+
+        evolution( playername, year, month, time_class, function(donnees){
+            console.table(donnees);
+        });
+    }
+
+    if( menu == 2){
+        listePartie(playername, year, month, time_class, function(donnees){
+            console.table(donnees);
+        });
+    }
+
+    if(menu ==3){
+        isStreamer(playername, function(donnees){
+            console.log(playername + ' streamer ? ' + donnees);
+        })
+    };
+
+});
+
+
+    
